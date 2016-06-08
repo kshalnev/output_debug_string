@@ -58,7 +58,7 @@ std::wstring toDebugString(const char* s, size_t n)
 {
     std::vector<wchar_t> w(n + 1, L'\0');
     size_t ret = 0;
-    if (0 != ::mbstowcs_s(&ret, w.data(), w.size(), s, n))
+    if (0 != mbstowcs_s(&ret, w.data(), w.size(), s, n))
         return outputDebugStringConstants::ERR_STR();
     return w.data();
 }
@@ -93,5 +93,5 @@ std::wstring toDebugString(bool val)
 void outputDebugString(std::wstring s) 
 {
     s += outputDebugStringConstants::CLRF_STR();
-    ::OutputDebugStringW(s.c_str());
+    OutputDebugStringW(s.c_str());
 }
